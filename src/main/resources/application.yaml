@@ -1,11 +1,4 @@
-server:
-  port: 8082
-
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/PerfumeStore
-    username: postgres
-    password: tasneemgad
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   liquibase:
@@ -14,3 +7,5 @@ spring:
   http:
     encoding:
       charset: UTF-8
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
