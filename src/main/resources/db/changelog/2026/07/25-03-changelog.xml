@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.27.xsd">
+
+    <changeSet id="1774721697441-12" author="Tasneem Gad">
+        <createTable tableName="orders">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_orders"/>
+            </column>
+            <column name="arabic_name" type="NVARCHAR(255)"/>
+            <column name="english_name" type="VARCHAR(255)"/>
+            <column name="is_enabled" type="BOOLEAN" defaultValueBoolean="true"/>
+            <column name="code" type="VARCHAR(255)"/>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="modified_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="timestamp"/>
+            <column name="modified_date" type="timestamp"/>
+
+            <column name="order_number" type="VARCHAR(36)"/>
+            <column name="transaction_reference" type="VARCHAR(100)"/>
+
+            <column name="payment_method_id" type="BIGINT"/>
+            <column name="shipping_details_id" type="BIGINT"/>
+            <column name="payment_status_id" type="BIGINT"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="orders"
+                                 baseColumnNames="payment_method_id"
+                                 constraintName="fk_orders_payment_methods"
+                                 referencedTableName="payment_methods"
+                                 referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint baseTableName="orders"
+                                 baseColumnNames="shipping_details_id"
+                                 constraintName="fk_orders_shipping_details"
+                                 referencedTableName="shipping_details"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="orders"
+                                 baseColumnNames="payment_status_id"
+                                 constraintName="fk_orders_payment_statuses"
+                                 referencedTableName="payment_statuses"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+</databaseChangeLog>

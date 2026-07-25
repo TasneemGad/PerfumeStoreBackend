@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.27.xsd">
+
+    <changeSet id="1774721697441-10" author="Tasneem Gad">
+        <createTable tableName="payment_methods">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_payment_methods"/>
+            </column>
+            <column name="arabic_name" type="NVARCHAR(255)"/>
+            <column name="english_name" type="VARCHAR(255)"/>
+            <column name="is_enabled" type="BOOLEAN" defaultValueBoolean="true"/>
+            <column name="code" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="modified_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="timestamp"/>
+            <column name="modified_date" type="timestamp"/>
+
+            <column name="instructions" type="NVARCHAR(500)"/>
+            <column name="account_details" type="VARCHAR(255)"/>
+        </createTable>
+
+        <insert tableName="payment_methods">
+            <column name="code" value="INSTAPAY"/>
+            <column name="arabic_name" value="إنستاباي"/>
+            <column name="english_name" value="InstaPay"/>
+            <column name="is_enabled" valueBoolean="true"/>
+            <column name="instructions" value="برجاء تحويل المبلغ لحساب إنستاباي وإرسال لقطة الشاشة عبر الواتساب لتأكيد الطلب"/>
+            <column name="account_details" value="yourname@instapay"/>
+            <column name="created_date" valueDate="NOW()"/>
+        </insert>
+
+        <insert tableName="payment_methods">
+            <column name="code" value="CASH"/>
+            <column name="arabic_name" value="الدفع عند الاستلام"/>
+            <column name="english_name" value="Cash on Delivery"/>
+            <column name="is_enabled" valueBoolean="true"/>
+            <column name="instructions" value="الدفع نقداً للمندوب عند استلام الشحنة"/>
+            <column name="created_date" valueDate="NOW()"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

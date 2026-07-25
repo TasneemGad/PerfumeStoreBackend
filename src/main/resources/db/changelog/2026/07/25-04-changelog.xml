@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.27.xsd">
+
+    <changeSet id="1774721697441-14" author="Tasneem Gad">
+        <createTable tableName="product_sizes">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_product_sizes"/>
+            </column>
+            <column name="arabic_name" type="NVARCHAR(255)"/>
+            <column name="english_name" type="VARCHAR(255)"/>
+            <column name="is_enabled" type="BOOLEAN" defaultValueBoolean="true"/>
+            <column name="code" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="modified_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="timestamp"/>
+            <column name="modified_date" type="timestamp"/>
+
+            <column name="size_value" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <insert tableName="product_sizes">
+            <column name="code" value="SIZE_30ML"/>
+            <column name="arabic_name" value="30 مل"/>
+            <column name="english_name" value="30 ml"/>
+            <column name="size_value" value="30ml"/>
+            <column name="is_enabled" valueBoolean="true"/>
+            <column name="created_date" valueDate="NOW()"/>
+        </insert>
+
+        <insert tableName="product_sizes">
+            <column name="code" value="SIZE_50ML"/>
+            <column name="arabic_name" value="50 مل"/>
+            <column name="english_name" value="50 ml"/>
+            <column name="size_value" value="50ml"/>
+            <column name="is_enabled" valueBoolean="true"/>
+            <column name="created_date" valueDate="NOW()"/>
+        </insert>
+
+        <insert tableName="product_sizes">
+            <column name="code" value="SIZE_100ML"/>
+            <column name="arabic_name" value="100 مل"/>
+            <column name="english_name" value="100 ml"/>
+            <column name="size_value" value="100ml"/>
+            <column name="is_enabled" valueBoolean="true"/>
+            <column name="created_date" valueDate="NOW()"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
